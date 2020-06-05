@@ -37,11 +37,31 @@ const Movies = {
                 .catch( err => {
                     throw new Error( err );
                 });
-    }
+    },
     /*
         Your code goes here
     */
-}
+    removeActorFromMovieList : function (movieId, changes) {
+        return moviesCollection
+            .update( {movie_ID: movieId}, {$set: changes} )
+            .then( result => {
+                return result;
+            })
+            .catch( err => {
+                throw new Error( err );
+            });
+    },
+    getMovieById : function (movieId, changes) {
+        return moviesCollection
+            .findOne({movie_ID: movieId})
+            .then( result => {
+                return result;
+            })
+            .catch( err => {
+                throw new Error( err );
+            });
+    }
+};
 
 module.exports = {
     Movies

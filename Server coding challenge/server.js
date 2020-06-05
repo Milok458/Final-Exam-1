@@ -3,12 +3,16 @@ const bodyParser = require( 'body-parser' );
 const mongoose = require( 'mongoose' );
 const jsonParser = bodyParser.json();
 const { DATABASE_URL, PORT } = require( './config' );
+const errHandler = require('./middleware/errorHandler');
 
 const app = express();
 
 /* 
     Your code goes here 
 */
+app.patch('/api/delete-movie-actor/:movie_ID', jsonParser, (req, res) =>{
+    errHandler(req, res);
+});
 
 app.listen( PORT, () => {
     console.log( "This server is running on port 8080" );
